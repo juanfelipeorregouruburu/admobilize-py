@@ -57,6 +57,7 @@ def get_job(type,start_time,last_time):
     return response['jobId'], response['status'], token
 
 def get_data_crowd():
+    print('Consultando datos de personas...')
     job_id,status,token = get_job('crowd',get_last_date_crowd(),date_time())
     if status == 'DONE':
         url = 'https://datagatewayapi.admobilize.com/v1alpha1/jobs/'+job_id+'/export?format=csv'
@@ -79,6 +80,7 @@ def get_data_crowd():
     return 'ok'
 
 def get_data_audience():
+    print('Consultando datos de audiencia...')
     job_id,status,token = get_job('audience',get_last_date_aud(),date_time())
     if status == 'DONE':
         url = 'https://datagatewayapi.admobilize.com/v1alpha1/jobs/'+job_id+'/export?format=csv'
