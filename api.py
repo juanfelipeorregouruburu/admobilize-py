@@ -73,7 +73,7 @@ def get_data_crowd():
         for row in cr:
             if cont > 0:
                 try:
-                    sql = "INSERT INTO crowd (device_id, zone_id, event, direction, count, insert_id, device_registry, camera_id, device_name, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                    sql = "INSERT INTO crowd (device_id, zone_id, event, direction, count, insert_id, device_registry, camera_id, device_name, date_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     mycursor.execute(sql, (str(row[0]),str(row[1]),str(row[2]),str(row[3]),str(row[4]),str(row[5]),str(row[6]),str(row[7]),str(row[8]),str(row[9])))
                     dbconn.commit()
                 except:
@@ -99,7 +99,7 @@ def get_data_audience():
         for row in cr:
             if cont > 0:
                 try:
-                    sql = "INSERT INTO audience (device_id, emotion, gender, age, is_view, is_impresion, dwell_time, mask, session_time, insert_id, device_registry, camer_id, device_name, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                    sql = "INSERT INTO audience (device_id, emotion, gender, age, is_view, is_impresion, dwell_time, mask, session_time, insert_id, device_registry, camer_id, device_name, date_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     mycursor.execute(sql, (str(row[0]),str(row[1]),str(row[2]),str(row[3]),str(row[4]),str(row[5]),str(row[6]),str(row[7]),str(row[8]),str(row[9]),str(row[10]),str(row[11]),str(row[12]),str(row[13])))
                     dbconn.commit()
                 except:

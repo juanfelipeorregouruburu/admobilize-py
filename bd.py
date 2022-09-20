@@ -1,8 +1,12 @@
 import traceback
-import MySQLdb
+import pyodbc
 
 def dbconnection():
     try:
-        return MySQLdb.connect(database='admobilize', user='adin_transelca', password='Adintello20201', host='adintelo-db.cpva49myawem.us-east-2.rds.amazonaws.com')
+        return pyodbc.connect("Driver={ODBC Driver 17 for SQL Server};"
+            "Server=ia2.database.windows.net;"
+            "Database=IA2;"
+            "UID=Greenia2;"
+            "PWD=Green2022;")
     except:
-        print(traceback.format_exc()) 
+        print(traceback.format_exc())
