@@ -19,26 +19,26 @@ def get_last_date_crowd():
     try:
         dbconn = dbconnection()
         mycursor = dbconn.cursor()
-        sql = "SELECT date_time FROM crowd ORDER BY date_time DESC LIMIT 1"
+        sql = "SELECT TOP 1 date_time FROM crowd ORDER BY date_time DESC"
         mycursor.execute(sql)
-        dbconn.commit() 
         row = mycursor.fetchone()[0]
         row = (row.replace(' ','T'))+'-05:00'
         return row
     except:
+        print(traceback.format_exc())
         return '2022-01-01T00:00:00-05:00'
 
 def get_last_date_aud():
     try:
         dbconn = dbconnection()
         mycursor = dbconn.cursor()
-        sql = "SELECT date_time FROM audience ORDER BY date_time DESC LIMIT 1"
+        sql = "SELECT TOP 1 date_time FROM audience ORDER BY date_time DESC"
         mycursor.execute(sql)
-        dbconn.commit() 
         row = mycursor.fetchone()[0]
         row = (row.replace(' ','T'))+'-05:00'
         return row
     except:
+        print(traceback.format_exc())
         return '2022-01-01T00:00:00-05:00'
 
 def auth():
@@ -49,6 +49,8 @@ def auth():
     return response['accessToken']
 
 def get_job(type,start_time,last_time):
+    print('Start time: '+start_time)
+    print('End time: '+last_time)
     token = auth()
     url = 'https://datagatewayapi.admobilize.com/v1alpha1/jobs'
     headers = {'Content-Type':'application/json','Authorization':'Bearer ' +str(token)}
